@@ -9,7 +9,7 @@ from datetime import datetime
 from pyxform import constants
 from pyxform.errors import PyXFormError
 from pyxform.instance import SurveyInstance
-from pyxform.odk_validate import check_xform
+from pyxform.enketo_validate import check_xform
 from pyxform.question import Question
 from pyxform.section import Section
 from pyxform.survey_element import SurveyElement
@@ -193,7 +193,7 @@ class Survey(Section):
             model_children.append(self.itext())
         model_children += [node("instance", self.xml_instance())]
         model_children += list(self._generate_static_instances())
-        model_children += list(self._generate_remote_instances())
+        #model_children += list(self._generate_remote_instances())
         model_children += list(self._generate_pulldata_instances())
         model_children += list(self._generate_from_file_instances())
         model_children += self.xml_bindings()
