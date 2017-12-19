@@ -4,7 +4,7 @@ from pyxform.validators.util import run_popen_with_timeout, decode_stream
 
 
 CURRENT_DIRECTORY = os.path.dirname(os.path.realpath(__file__))
-ENKETO_VALIDATE_JS = os.path.join(CURRENT_DIRECTORY, "enketo_validate.js")
+ENKETO_VALIDATE_JS = os.path.join(CURRENT_DIRECTORY, "./enketo-validate-lib/validate")
 
 
 class EnketoValidateError(Exception):

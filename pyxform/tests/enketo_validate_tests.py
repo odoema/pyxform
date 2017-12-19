@@ -4,7 +4,7 @@ from pyxform.tests.utils import prep_class_config
 from pyxform.validators.enketo_validate import check_xform
 
 
-class ODKValidateTests(TestCase):
+class EnketoValidateTests(TestCase):
     maxDiff = None
 
     @classmethod
