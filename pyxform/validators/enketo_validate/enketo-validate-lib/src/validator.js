@@ -10,7 +10,6 @@ let validate = ( xformStr, options ) => {
     try {
         xform = new XForm( xformStr, options );
     } catch ( e ) {
-        //console.error( 'parsing failed: ', e );
         errors.push( e );
     }
 
@@ -30,7 +29,7 @@ let validate = ( xformStr, options ) => {
     if ( xform && errors.length === 0 ) {
 
         // Find binds
-        xform.binds.forEach( function( bind, index ) {
+        xform.binds.forEach( ( bind, index ) => {
             const path = bind.getAttribute( 'nodeset' );
 
             if ( !path ) {
@@ -46,14 +45,14 @@ let validate = ( xformStr, options ) => {
                 return;
             }
 
-            [ 'calculate', 'constraint', 'relevant', 'required' ].forEach( function( logicName ) {
+            [ 'calculate', 'constraint', 'relevant', 'required' ].forEach( logicName => {
                 const logicExpr = bind.getAttribute( logicName );
                 const calculation = logicName === 'calculate';
                 if ( logicExpr ) {
                     try {
-                        xform.enketoEvaluate( logicExpr,( calculation ? 'string' : 'boolean' ), path );
+                        xform.enketoEvaluate( logicExpr, ( calculation ? 'string' : 'boolean' ), path );
                     } catch ( e ) {
-                        let friendlyLogicName =  calculation ? 'calculation' : logicName;
+                        let friendlyLogicName = calculation ? 'calculation' : logicName;
                         friendlyLogicName = friendlyLogicName[ 0 ].toUpperCase() + friendlyLogicName.substring( 1 );
                         errors.push( `${friendlyLogicName} formula for "${nodeName}": ${e}` );
                     }
@@ -64,10 +63,7 @@ let validate = ( xformStr, options ) => {
 
     }
 
-    return {
-        warnings: warnings,
-        errors: errors
-    };
+    return { warnings, errors };
 };
 
 module.exports = {
